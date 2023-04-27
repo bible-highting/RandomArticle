@@ -41,14 +41,12 @@ p {
 #root {
   isolation: isolate;
 }
-button {
-  background: none;
-  border: 0;
-  box-sizing: initial;
-  color: inherit;
-  cursor: pointer;
-  font: inherit;
-  line-height: inherit;
-  overflow: visible;
-  vertical-align: inherit;
+a {
+  text-decoration: none;
+  outline: none;
+}
+
+a:hover,
+a:active {
+  text-decoration: none;
 }

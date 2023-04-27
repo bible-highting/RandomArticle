@@ -1,11 +1,17 @@
-body {
+.wrapper {
   width: 300px;
+  height: 104px;
   background-color: lightblue;
+  text-align: center;
 }
 .randomBtn {
-  display: block;
+  display: inline-block;
   margin: 30px auto;
   padding: 10px 20px;
   border-radius: 10px;
   background: #fff;
+}
+.randomBtn:hover,
+.randomBtn:active {
+  border: 2px solid skyblue;
 }
