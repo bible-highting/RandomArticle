@@ -1,0 +1,25 @@
+.wrapper {
+  width: 500px;
+  padding: 30px 0;
+  /* height: 104px; */
+  background-color: lightblue;
+  text-align: center;
+}
+
+.randomBtn {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.randomBtn:hover,
+.randomBtn:active {
+  border: 2px solid skyblue;
+}
+
+.readFlag {
+  margin-top: 10px;
+  opacity: 0;
+}
