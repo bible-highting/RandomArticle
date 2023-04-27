@@ -18,3 +18,8 @@
 .randomBtn:active {
   border: 2px solid skyblue;
 }
+
+.readFlag {
+  margin-top: 10px;
+  opacity: 0;
+}
