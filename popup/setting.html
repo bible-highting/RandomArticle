@@ -6,12 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../style/reset.css" />
     <link rel="stylesheet" href="../style/style.css" />
-    <link rel="stylesheet" href="../style/setting.css" />
+    <link rel="stylesheet" href="../css/setting.css" />
     <title>Document</title>
   </head>
   <body>
     <div class="wrapper">
-      <div>세팅</div>
+      <a class="homeBtn" href="./popup.html">🏠</a>
+      <h1 class="settingTitle">아티클 제목과 주소를 입력하세요</h1>
+      <div class="ArticleListform">
+        <p class="inputWrapper">
+          <label>제목</label>
+          <input type="text" />
+        </p>
+        <p class="inputWrapper">
+          <label>Url</label>
+          <input type="text" />
+        </p>
+      </div>
+      <button class="btn">추가하기</button>
+      <button class="btn">리스트 보기</button>
     </div>
     <script src="../script/setting.js"></script>
   </body>
