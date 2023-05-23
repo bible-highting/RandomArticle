@@ -1,0 +1,14 @@
+.wrapper {
+  position: relative;
+  width: 500px;
+  padding: 30px 0;
+  /* height: 104px; */
+  background-color: rgb(173, 216, 230, 0.4);
+  text-align: center;
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: #fff;
+}

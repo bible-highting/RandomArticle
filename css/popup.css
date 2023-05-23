@@ -1,0 +1,22 @@
+.randomBtn {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.randomBtn:hover,
+.randomBtn:active {
+  border: 2px solid skyblue;
+}
+
+.readFlag {
+  margin-top: 10px;
+  opacity: 0;
+}
+
+.settingBtn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+/*# sourceMappingURL=popup.css.map */
