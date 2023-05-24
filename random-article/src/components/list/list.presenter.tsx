@@ -1,8 +1,9 @@
 import { Input } from 'antd';
 import * as s from './list.style';
 import { HomeOutlined, DeleteOutlined } from '@ant-design/icons';
+import { IListUIProps } from './list.types';
 
-export default function ListUI() {
+export default function ListUI(props: IListUIProps) {
   return (
     <>
       <s.BoxWrapper>
@@ -11,7 +12,9 @@ export default function ListUI() {
         </s.Menu>
         <s.AddWrapper>
           <s.LinkInput placeholder='Basic usage' />
-          <s.RandomBtn type='primary'>링크 추가</s.RandomBtn>
+          <s.RandomBtn type='primary' onClick={props.onClickAddArticle}>
+            링크 추가
+          </s.RandomBtn>
         </s.AddWrapper>
         <s.ListWrapper>
           <s.List>
