@@ -7,21 +7,29 @@ export default function MainPageUI() {
   return (
     <>
       <s.Wrapper>
-        <s.Title>Random Article</s.Title>
-        <s.RandomBtn>기사 생성</s.RandomBtn>
-        <Card
-          hoverable
-          style={{ width: 240 }}
-          cover={
-            <img
-              alt='example'
-              src='https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'
+        <s.BoxWrapper>
+          <s.Title>오늘의 추천 글</s.Title>
+          <s.RandomBtn type='primary'>기사 생성</s.RandomBtn>
+          <s.Article
+            hoverable
+            style={{ width: 240 }}
+            cover={
+              <img
+                alt='example'
+                src='https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'
+                height={150}
+                style={{ objectFit: 'cover' }}
+              />
+            }
+          >
+            <Meta
+              title='Europe Street beat'
+              description='www.instagram.com'
+              style={{ textAlign: 'left' }}
             />
-          }
-        >
-          <Meta title='Europe Street beat' description='www.instagram.com' />
-        </Card>
-        <s.IsRead>읽음</s.IsRead>
+          </s.Article>
+          <s.IsRead>Done</s.IsRead>
+        </s.BoxWrapper>
       </s.Wrapper>
     </>
   );
