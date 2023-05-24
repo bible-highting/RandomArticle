@@ -1,4 +1,7 @@
 import * as s from './main.style';
+import { Card } from 'antd';
+
+const { Meta } = Card;
 
 export default function MainPageUI() {
   return (
@@ -6,7 +9,18 @@ export default function MainPageUI() {
       <s.Wrapper>
         <s.Title>Random Article</s.Title>
         <s.RandomBtn>기사 생성</s.RandomBtn>
-        <s.Article>제목</s.Article>
+        <Card
+          hoverable
+          style={{ width: 240 }}
+          cover={
+            <img
+              alt='example'
+              src='https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'
+            />
+          }
+        >
+          <Meta title='Europe Street beat' description='www.instagram.com' />
+        </Card>
         <s.IsRead>읽음</s.IsRead>
       </s.Wrapper>
     </>

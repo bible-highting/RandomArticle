@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Card } from 'antd';
 
 export const Wrapper = styled.div`
   max-width: 1200px;
