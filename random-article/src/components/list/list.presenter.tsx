@@ -11,33 +11,24 @@ export default function ListUI(props: IListUIProps) {
           <HomeOutlined />
         </s.Menu>
         <s.AddWrapper>
-          <s.LinkInput placeholder='Basic usage' />
+          <s.LinkInput placeholder='제목' />
+          <s.LinkInput placeholder='링크' />
           <s.RandomBtn type='primary' onClick={props.onClickAddArticle}>
             링크 추가
           </s.RandomBtn>
         </s.AddWrapper>
         <s.ListWrapper>
-          <s.List>
-            <s.Title>Article Title</s.Title>
-            <s.ListMenu>
-              <s.IsRead>Done</s.IsRead>
-              <DeleteOutlined />
-            </s.ListMenu>
-          </s.List>
-          <s.List>
-            <s.Title>Article Title</s.Title>
-            <s.ListMenu>
-              <s.IsRead>Done</s.IsRead>
-              <DeleteOutlined />
-            </s.ListMenu>
-          </s.List>
-          <s.List>
-            <s.Title>Article Title</s.Title>
-            <s.ListMenu>
-              <s.IsRead>Done</s.IsRead>
-              <DeleteOutlined />
-            </s.ListMenu>
-          </s.List>
+          {props.listsData.map((el) => (
+            <>
+              <s.List>
+                <s.Title>Article Title</s.Title>
+                <s.ListMenu>
+                  <s.IsRead>Done</s.IsRead>
+                  <DeleteOutlined />
+                </s.ListMenu>
+              </s.List>
+            </>
+          ))}
         </s.ListWrapper>
       </s.BoxWrapper>
     </>
