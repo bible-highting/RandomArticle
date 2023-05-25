@@ -38,6 +38,7 @@ export default function List() {
       title: inputs.title,
       link: inputs.link,
     });
+    setInputs({ title: '', link: '' });
   };
 
   const onChangeInputs = (e: ChangeEvent<HTMLInputElement>) => {
@@ -52,6 +53,7 @@ export default function List() {
       onClickAddArticle={onClickAddArticle}
       onChangeInputs={onChangeInputs}
       listsData={listsData}
+      inputs={inputs}
     />
   );
 }

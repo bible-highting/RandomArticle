@@ -36,7 +36,11 @@ export const RandomBtn = styled(Button)`
   margin-bottom: 30px;
 `;
 
-export const ListWrapper = styled.div``;
+export const ListWrapper = styled.div`
+  max-height: 220px;
+  overflow: scroll;
+  /* TODO - scrollbar가 좀 구리다 예쁘게 수정 */
+`;
 
 export const List = styled.div`
   display: flex;
