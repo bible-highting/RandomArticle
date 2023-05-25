@@ -29,14 +29,16 @@ export default function ListUI(props: IListUIProps) {
         </s.AddWrapper>
         <s.ListWrapper>
           {props.listsData.map((el, index) => (
-            <s.List key={index}>
-              {/* TODO - uuid로 랜덤key 부여할 것 */}
+            <s.List key={el.id}>
               <s.Title href={el.link} target='_blank'>
                 {el.title}
               </s.Title>
               <s.ListMenu>
                 <s.IsRead>Done</s.IsRead>
-                <DeleteOutlined />
+                <DeleteOutlined
+                  onClick={props.onClickDeleteArticle}
+                  id={el.id}
+                />
               </s.ListMenu>
             </s.List>
           ))}

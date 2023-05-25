@@ -1,18 +1,25 @@
 import ListUI from './list.presenter';
-import { collection, addDoc, getDocs, getFirestore } from 'firebase/firestore';
-import { doc, onSnapshot } from 'firebase/firestore';
-import { firebaseApp } from '../../commons/libraries/firebase';
-import { ChangeEvent, useEffect, useState } from 'react';
+import {
+  collection,
+  addDoc,
+  onSnapshot,
+  deleteDoc,
+  updateDoc,
+  doc,
+} from 'firebase/firestore';
+import { db } from '../../commons/libraries/firebase';
+import { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
 
 export default function List() {
   const [listsData, setListsData] = useState<any[]>([]);
   const [inputs, setInputs] = useState({
+    id: '',
     title: '',
     link: '',
   });
 
   useEffect(() => {
-    const list = collection(getFirestore(firebaseApp), 'list');
+    const list = collection(db, 'list');
     const newListsData = onSnapshot(list, (snapshot) => {
       const datas = snapshot.docs.map((doc) => doc.data());
       console.log(datas);
@@ -31,14 +38,19 @@ export default function List() {
   }, []);
   // Blog - 링크 등록시 바로 리렌더링 하려고 [listData]넣었더니 무한 렌더링 됨 이 부분 블로그 정리하기(get -> onSnapshot)
   // Blog - Todo Tree 사용법 정리
+  // TODO - 링크 등록 후 최신순 조회
 
-  const onClickAddArticle = () => {
-    const list = collection(getFirestore(firebaseApp), 'list');
-    addDoc(list, {
+  const onClickAddArticle = async () => {
+    const list = collection(db, 'list');
+    const listRef = await addDoc(list, {
+      id: '',
       title: inputs.title,
       link: inputs.link,
     });
-    setInputs({ title: '', link: '' });
+    console.log(listRef.id);
+    await updateDoc(doc(db, 'list', listRef.id), { id: listRef.id });
+    // TODO - 이렇게 업데이트를 하는게 맞는 방법일까? id를 바로 쓸 수는 없나?
+    setInputs({ id: '', title: '', link: '' });
   };
 
   const onChangeInputs = (e: ChangeEvent<HTMLInputElement>) => {
@@ -48,10 +60,15 @@ export default function List() {
     });
   };
 
+  const onClickDeleteArticle = async (e: MouseEvent<HTMLSpanElement>) => {
+    await deleteDoc(doc(db, 'list', e.currentTarget.id));
+  };
+
   return (
     <ListUI
       onClickAddArticle={onClickAddArticle}
       onChangeInputs={onChangeInputs}
+      onClickDeleteArticle={onClickDeleteArticle}
       listsData={listsData}
       inputs={inputs}
     />
