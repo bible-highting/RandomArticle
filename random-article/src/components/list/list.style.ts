@@ -44,7 +44,7 @@ export const List = styled.div`
   padding: 3px 0;
 `;
 
-export const Title = styled.p`
+export const Title = styled.a`
   &:hover,
   &:focus {
     color: #1890ff;
