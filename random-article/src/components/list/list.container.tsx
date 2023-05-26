@@ -28,18 +28,10 @@ export default function List() {
       console.log(datas);
       setListsData(datas);
     });
-    // const fetchLists = async () => {
-    //   const result = await getDocs(list);
-    //   const datas = result.docs.map((el) => el.data());
-    //   console.log(datas);
-    //   setListsData(datas);
-    // };
-    // fetchLists();
     return () => {
       newListsData();
     };
   }, []);
-  // Blog - 링크 등록시 바로 리렌더링 하려고 [listData]넣었더니 무한 렌더링 됨 이 부분 블로그 정리하기(get -> onSnapshot)
   // Blog - Todo Tree 사용법 정리
   // TODO - 링크 등록 후 최신순 조회
 

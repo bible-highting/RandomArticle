@@ -21,7 +21,9 @@ export const RandomBtn = styled(Button)`
   margin-bottom: 30px;
 `;
 
-export const Article = styled(Card)``;
+export const Article = styled(Card)`
+  margin: 0 auto;
+`;
 
 export const IsRead = styled(Checkbox)`
   margin: 20px 0;

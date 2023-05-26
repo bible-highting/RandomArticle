@@ -1,15 +1,18 @@
 import * as s from './main.style';
 import { Card } from 'antd';
+import { IPropsMainPageUI } from './main.types';
 
 const { Meta } = Card;
 
-export default function MainPageUI() {
+export default function MainPageUI(props: IPropsMainPageUI) {
   return (
     <>
       <s.Wrapper>
         <s.BoxWrapper>
           <s.Title>오늘의 추천 글</s.Title>
-          <s.RandomBtn type='primary'>기사 생성</s.RandomBtn>
+          <s.RandomBtn type='primary' onClick={props.clickCreateRandomArticle}>
+            기사 생성
+          </s.RandomBtn>
           <s.Article
             hoverable
             style={{ width: 240 }}
