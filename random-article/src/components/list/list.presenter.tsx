@@ -8,7 +8,7 @@ export default function ListUI(props: IListUIProps) {
     <>
       <s.BoxWrapper>
         <s.Menu>
-          <HomeOutlined />
+          <HomeOutlined onClick={props.onClickMoveToHome} />
         </s.Menu>
         <s.AddWrapper>
           <s.LinkInput

@@ -10,8 +10,10 @@ import {
 import { db } from '../../commons/libraries/firebase';
 import { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
+import { useRouter } from 'next/router';
 
 export default function List() {
+  const router = useRouter();
   const [listsData, setListsData] = useState<any[]>([]);
   const [inputs, setInputs] = useState({
     id: '',
@@ -73,12 +75,17 @@ export default function List() {
     }
   };
 
+  const onClickMoveToHome = () => {
+    router.push('/');
+  };
+
   return (
     <ListUI
       onClickAddArticle={onClickAddArticle}
       onChangeInputs={onChangeInputs}
       onClickDeleteArticle={onClickDeleteArticle}
       onChangeRead={onChangeRead}
+      onClickMoveToHome={onClickMoveToHome}
       listsData={listsData}
       inputs={inputs}
     />
