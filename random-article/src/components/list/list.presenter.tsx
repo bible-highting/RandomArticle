@@ -28,13 +28,19 @@ export default function ListUI(props: IListUIProps) {
           </s.RandomBtn>
         </s.AddWrapper>
         <s.ListWrapper>
-          {props.listsData.map((el, index) => (
+          {props.listsData.map((el) => (
             <s.List key={el.id}>
               <s.Title href={el.link} target='_blank'>
                 {el.title}
               </s.Title>
               <s.ListMenu>
-                <s.IsRead>Done</s.IsRead>
+                <s.IsRead
+                  checked={el.isRead}
+                  onChange={props.onChangeRead}
+                  id={el.id}
+                >
+                  Done
+                </s.IsRead>
                 <DeleteOutlined
                   onClick={props.onClickDeleteArticle}
                   id={el.id}

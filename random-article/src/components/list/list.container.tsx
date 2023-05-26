@@ -9,6 +9,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '../../commons/libraries/firebase';
 import { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
+import { CheckboxChangeEvent } from 'antd/es/checkbox';
 
 export default function List() {
   const [listsData, setListsData] = useState<any[]>([]);
@@ -46,8 +47,8 @@ export default function List() {
       id: '',
       title: inputs.title,
       link: inputs.link,
+      isRead: false,
     });
-    console.log(listRef.id);
     await updateDoc(doc(db, 'list', listRef.id), { id: listRef.id });
     // TODO - 이렇게 업데이트를 하는게 맞는 방법일까? id를 바로 쓸 수는 없나?
     setInputs({ id: '', title: '', link: '' });
@@ -64,11 +65,20 @@ export default function List() {
     await deleteDoc(doc(db, 'list', e.currentTarget.id));
   };
 
+  const onChangeRead = async (e: CheckboxChangeEvent) => {
+    const data = listsData.find((el) => el.id === e.target.id);
+    if (data) {
+      const updatedIsRead = !data.isRead;
+      await updateDoc(doc(db, 'list', data.id), { isRead: updatedIsRead });
+    }
+  };
+
   return (
     <ListUI
       onClickAddArticle={onClickAddArticle}
       onChangeInputs={onChangeInputs}
       onClickDeleteArticle={onClickDeleteArticle}
+      onChangeRead={onChangeRead}
       listsData={listsData}
       inputs={inputs}
     />
