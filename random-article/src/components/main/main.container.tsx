@@ -10,10 +10,12 @@ import {
   where,
 } from 'firebase/firestore';
 import { useRouter } from 'next/router';
+import { getRandomImage } from '../../commons/libraries/utils';
 
 export default function MainPage() {
   const router = useRouter();
   const [listsData, setListsData] = useState<any[]>([]);
+  const [randomImage, setRandomImage] = useState('');
   const [selectedArticle, setSelectedArticle] = useState({
     id: '',
     isRead: false,
@@ -40,6 +42,9 @@ export default function MainPage() {
     const randomNum = Math.floor(Math.random() * dataNum);
     // TODO - 이전과 같은 숫자가 나오면 랜덤숫자 다시 뽑기
     setSelectedArticle(listsData[randomNum]);
+
+    const image = getRandomImage();
+    setRandomImage(image);
   };
 
   useEffect(() => {
@@ -70,6 +75,7 @@ export default function MainPage() {
       onChangeIsRead={onChangeIsRead}
       onClickMoveToData={onClickMoveToData}
       selectedArticle={selectedArticle}
+      randomImage={randomImage}
     />
   );
 }

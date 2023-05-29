@@ -27,7 +27,7 @@ export default function MainPageUI(props: IPropsMainPageUI) {
                   cover={
                     <img
                       alt='example'
-                      src='https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'
+                      src={props.randomImage}
                       height={150}
                       style={{ objectFit: 'cover' }}
                     />

@@ -3,4 +3,5 @@ export interface IPropsMainPageUI {
   onChangeIsRead: () => void;
   onClickMoveToData: () => void;
   selectedArticle: { id: string; isRead: boolean; title: string; link: string };
+  randomImage: string;
 }
