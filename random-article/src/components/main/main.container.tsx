@@ -9,8 +9,10 @@ import {
   query,
   where,
 } from 'firebase/firestore';
+import { useRouter } from 'next/router';
 
 export default function MainPage() {
+  const router = useRouter();
   const [listsData, setListsData] = useState<any[]>([]);
   const [selectedArticle, setSelectedArticle] = useState({
     id: '',
@@ -59,10 +61,14 @@ export default function MainPage() {
     });
   };
 
+  const onClickMoveToData = () => {
+    router.push('/list');
+  };
   return (
     <MainPageUI
       clickCreateRandomArticle={clickCreateRandomArticle}
       onChangeIsRead={onChangeIsRead}
+      onClickMoveToData={onClickMoveToData}
       selectedArticle={selectedArticle}
     />
   );

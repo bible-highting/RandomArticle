@@ -1,6 +1,7 @@
 import * as s from './main.style';
 import { Card } from 'antd';
 import { IPropsMainPageUI } from './main.types';
+import { UnorderedListOutlined } from '@ant-design/icons';
 
 const { Meta } = Card;
 
@@ -9,6 +10,9 @@ export default function MainPageUI(props: IPropsMainPageUI) {
     <>
       <s.Wrapper>
         <s.BoxWrapper>
+          <s.Menu>
+            <UnorderedListOutlined onClick={props.onClickMoveToData} />
+          </s.Menu>
           <s.Title>오늘의 추천 글</s.Title>
           <s.RandomBtn type='primary' onClick={props.clickCreateRandomArticle}>
             기사 생성
