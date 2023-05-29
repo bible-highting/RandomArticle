@@ -13,25 +13,28 @@ export default function MainPageUI(props: IPropsMainPageUI) {
           <s.RandomBtn type='primary' onClick={props.clickCreateRandomArticle}>
             기사 생성
           </s.RandomBtn>
-          <s.Article
-            hoverable
-            style={{ width: 240 }}
-            cover={
-              <img
-                alt='example'
-                src='https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'
-                height={150}
-                style={{ objectFit: 'cover' }}
+          <a href={props.selectedArticle.link} target='_blank'>
+            {/* TODO - 추후 a없애고 onClickMotoToArticle로 구현? js로 페이지 이동하는 법 알기 router면 되려나*/}
+            <s.Article
+              hoverable
+              style={{ width: 240 }}
+              cover={
+                <img
+                  alt='example'
+                  src='https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'
+                  height={150}
+                  style={{ objectFit: 'cover' }}
+                />
+              }
+            >
+              <Meta
+                title={props.selectedArticle.title}
+                description={props.selectedArticle.link}
+                style={{ textAlign: 'left' }}
               />
-            }
-          >
-            <Meta
-              title='Europe Street beat'
-              description='www.instagram.com'
-              style={{ textAlign: 'left' }}
-            />
-          </s.Article>
-          <s.IsRead>Done</s.IsRead>
+            </s.Article>
+          </a>
+          <s.IsRead checked={props.selectedArticle.isRead}>Done</s.IsRead>
         </s.BoxWrapper>
       </s.Wrapper>
     </>
