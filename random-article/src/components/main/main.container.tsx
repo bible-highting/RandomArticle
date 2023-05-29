@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { db } from '../../commons/libraries/firebase';
 import MainPageUI from './main.presenter';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, updateDoc, doc } from 'firebase/firestore';
 
 export default function MainPage() {
   const [listsData, setListsData] = useState<any[]>([]);
@@ -16,6 +16,7 @@ export default function MainPage() {
     const fetchLists = async () => {
       const result = await getDocs(collection(db, 'list'));
       const datas = result.docs.map((el) => el.data());
+      // .filter((el) => !el.isRead);
       setListsData(datas);
       console.log('listData:');
       console.log(listsData);
@@ -38,9 +39,19 @@ export default function MainPage() {
   // 이유 : setListsData가 비동기로 작동해서 바로 listsData에 반영안됨. 렌더링이 다시 되어야 그때부터 반영
   // 따라서 selctedArticle이 변경되었을때 useEffect를 통해 리렌더링하면 처음부터 결과가 나온다.
   // 아여기 이해가 잘 안된다.. 일단 다른 부분 해결하고 다시 돌아오자
+
+  const onChangeIsRead = async () => {
+    const changedIsRead = !selectedArticle.isRead;
+    setSelectedArticle({ ...selectedArticle, isRead: changedIsRead });
+    await updateDoc(doc(db, 'list', selectedArticle.id), {
+      isRead: changedIsRead,
+    });
+  };
+
   return (
     <MainPageUI
       clickCreateRandomArticle={clickCreateRandomArticle}
+      onChangeIsRead={onChangeIsRead}
       selectedArticle={selectedArticle}
     />
   );

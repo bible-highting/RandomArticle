@@ -34,7 +34,12 @@ export default function MainPageUI(props: IPropsMainPageUI) {
               />
             </s.Article>
           </a>
-          <s.IsRead checked={props.selectedArticle.isRead}>Done</s.IsRead>
+          <s.IsRead
+            checked={props.selectedArticle.isRead}
+            onChange={props.onChangeIsRead}
+          >
+            Done
+          </s.IsRead>
         </s.BoxWrapper>
       </s.Wrapper>
     </>
