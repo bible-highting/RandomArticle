@@ -10,10 +10,11 @@ import {
   onSnapshot,
 } from 'firebase/firestore';
 import { useRouter } from 'next/router';
-import { getRandomImage } from '../../commons/libraries/utils';
+import { getRandomImage, getRandomNumber } from '../../commons/libraries/utils';
 
 export default function MainPage() {
   const router = useRouter();
+  const [articleNum, setArticleNum] = useState(Number);
   const [listsData, setListsData] = useState<any[]>([]);
   const [randomImage, setRandomImage] = useState('');
   const [selectedArticle, setSelectedArticle] = useState({
@@ -40,9 +41,19 @@ export default function MainPage() {
   // TODO - 불러올 데이터가 없을 때 에러처리
   const clickCreateRandomArticle = () => {
     const dataNum = listsData.length;
-    const randomNum = Math.floor(Math.random() * dataNum);
-    // TODO - 이전과 같은 숫자가 나오면 랜덤숫자 다시 뽑기
-    setSelectedArticle(listsData[randomNum]);
+    setArticleNum((prev) => {
+      let randomNum;
+      if (dataNum > 1) {
+        do {
+          randomNum = getRandomNumber(0, dataNum);
+        } while (prev === randomNum);
+      } else {
+        randomNum = 0;
+      }
+      return randomNum;
+    });
+    console.log(articleNum);
+    setSelectedArticle(listsData[articleNum]);
 
     const image = getRandomImage();
     setRandomImage(image);
