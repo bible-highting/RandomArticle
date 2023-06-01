@@ -34,6 +34,8 @@ export default function MainPageUI(props: IPropsMainPageUI) {
                   }
                 >
                   <Meta
+                    // TODO - 여기 데이터 링크 메타데이터 가져와서 보여주기로 바꾸기
+                    // TODO - title, description 길어졌을 때 UI 확인
                     title={props.selectedArticle.title}
                     description={props.selectedArticle.link}
                     style={{ textAlign: 'left' }}
