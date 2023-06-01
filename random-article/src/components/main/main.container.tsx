@@ -11,6 +11,8 @@ import {
 } from 'firebase/firestore';
 import { useRouter } from 'next/router';
 import { getRandomImage, getRandomNumber } from '../../commons/libraries/utils';
+import { Modal } from 'antd';
+import { Content } from 'antd/es/layout/layout';
 
 export default function MainPage() {
   const router = useRouter();
@@ -29,16 +31,35 @@ export default function MainPage() {
       collection(db, 'list'),
       where('isRead', '==', false)
     );
+
     const fetchLists = onSnapshot(queryLists, (snapshot) => {
       const datas = snapshot.docs.map((doc) => doc.data());
       setListsData(datas);
+      warningEmptyData(datas);
     });
+
+    const warningEmptyData = (data: any[]) => {
+      if (data.length < 1) {
+        Modal.warning({
+          content: (
+            <p>
+              더이상 추천할 수 있는 링크가 없습니다. <br />
+              리스트 페이지에서 새로운 아티클을 등록해주세요.
+            </p>
+          ),
+          onOk(...args) {
+            router.push('/list');
+          },
+        });
+      }
+    };
     return () => {
       fetchLists();
+      warningEmptyData(listsData);
+      //Blog - 여기 놓으면 두번 실행되는 것 리액트 라이프사이클 이해하고 블로그에 정리하기
     };
   }, []);
 
-  // TODO - 불러올 데이터가 없을 때 에러처리
   const clickCreateRandomArticle = () => {
     const dataNum = listsData.length;
     setArticleNum((prev) => {

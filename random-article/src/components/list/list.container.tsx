@@ -25,7 +25,6 @@ export default function List() {
     const list = collection(db, 'list');
     const newListsData = onSnapshot(list, (snapshot) => {
       const datas = snapshot.docs.map((doc) => doc.data());
-      console.log(datas);
       setListsData(datas);
     });
     return () => {
