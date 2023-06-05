@@ -55,7 +55,7 @@ export default function MainPage() {
     };
     return () => {
       fetchLists();
-      warningEmptyData(listsData);
+      // warningEmptyData(listsData);
       //Blog - 여기 놓으면 두번 실행되는 것 리액트 라이프사이클 이해하고 블로그에 정리하기
     };
   }, []);
