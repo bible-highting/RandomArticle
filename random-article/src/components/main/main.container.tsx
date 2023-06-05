@@ -24,6 +24,8 @@ export default function MainPage() {
     isRead: false,
     title: '',
     link: '',
+    description: '',
+    image: '',
   });
 
   useEffect(() => {
