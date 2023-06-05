@@ -42,6 +42,9 @@ export default function ListUI(props: IListUIProps) {
               </s.ListMenu>
             </s.List>
           ))}
+          {props.listsData.length < 1 && (
+            <s.Info>읽고 싶은 아티클을 추가하세요.</s.Info>
+          )}
         </s.ListWrapper>
       </s.BoxWrapper>
     </>
