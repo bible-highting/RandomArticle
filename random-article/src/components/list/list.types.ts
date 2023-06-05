@@ -11,5 +11,5 @@ export interface IListUIProps {
   onChangeRead: (e: CheckboxChangeEvent) => Promise<void>;
   onClickMoveToHome: () => void;
   listsData: any[];
-  inputs: { title: string; link: string };
+  input: string;
 }

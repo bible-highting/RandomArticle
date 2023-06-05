@@ -12,16 +12,10 @@ export default function ListUI(props: IListUIProps) {
         </s.Menu>
         <s.AddWrapper>
           <s.LinkInput
-            id='title'
-            onChange={props.onChangeInputs}
-            placeholder='제목'
-            value={props.inputs.title}
-          />
-          <s.LinkInput
             id='link'
             onChange={props.onChangeInputs}
             placeholder='링크'
-            value={props.inputs.link}
+            value={props.input}
           />
           <s.RandomBtn type='primary' onClick={props.onClickAddArticle}>
             링크 추가
