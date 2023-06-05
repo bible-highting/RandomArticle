@@ -6,6 +6,8 @@ import {
   deleteDoc,
   updateDoc,
   doc,
+  query,
+  orderBy,
 } from 'firebase/firestore';
 import { db } from '../../commons/libraries/firebase';
 import { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
@@ -27,8 +29,11 @@ export default function List() {
   const [input, setInput] = useState('');
 
   useEffect(() => {
-    const list = collection(db, 'list');
-    const newListsData = onSnapshot(list, (snapshot) => {
+    const queryLists = query(
+      collection(db, 'list'),
+      orderBy('timestamp', 'desc')
+    );
+    const newListsData = onSnapshot(queryLists, (snapshot) => {
       const datas = snapshot.docs.map((doc) => doc.data());
       setListsData(datas);
     });
@@ -37,7 +42,6 @@ export default function List() {
     };
   }, []);
   // Blog - Todo Tree 사용법 정리
-  // TODO - 링크 등록 후 최신순 조회
 
   const onClickAddArticle = async () => {
     const result = await getMetaData();
@@ -80,6 +84,7 @@ export default function List() {
         isRead: false,
         description: result.ogDescription || null,
         image: result.ogImage[0].url,
+        timestamp: new Date(),
       });
       await updateDoc(doc(db, 'list', listRef.id), { id: listRef.id });
       // TODO - 이렇게 업데이트를 하는게 맞는 방법일까? id를 바로 쓸 수는 없나?
