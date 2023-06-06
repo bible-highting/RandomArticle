@@ -16,7 +16,7 @@
     "antd": "^5.5.1",
     "firebase": "^9.22.0",
     "next": "13.4.3",
-    "open-graph-scraper": "^6.0.1",
+    "open-graph-scraper": "5.x.x",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
