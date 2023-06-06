@@ -83,7 +83,7 @@ export default function List() {
         link: input,
         isRead: false,
         description: result.ogDescription || null,
-        image: result.ogImage[0].url,
+        image: result.url || null,
         timestamp: new Date(),
       });
       await updateDoc(doc(db, 'list', listRef.id), { id: listRef.id });
