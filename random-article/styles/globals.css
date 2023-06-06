@@ -19,6 +19,15 @@ p {
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+  height: 1px;
+}
+::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 12px 12px 12px 12px;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

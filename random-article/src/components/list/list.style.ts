@@ -39,13 +39,21 @@ export const RandomBtn = styled(Button)`
 export const ListWrapper = styled.div`
   max-height: 220px;
   overflow: scroll;
-  /* TODO - scrollbar가 좀 구리다 예쁘게 수정 */
 `;
 
 export const List = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 3px 0;
+  padding-right: 10px;
+  text-align: left;
+`;
+
+export const Info = styled.p`
+  color: #aaa;
+  background: #eee;
+  padding: 10px 20px;
+  border-radius: 20px;
 `;
 
 export const Title = styled.a`
@@ -65,4 +73,5 @@ export const ListMenu = styled.div`
     cursor: pointer;
   }
 `;
+
 export const IsRead = styled(Checkbox)``;

@@ -3,17 +3,20 @@ import { db } from '../../commons/libraries/firebase';
 import MainPageUI from './main.presenter';
 import {
   collection,
-  getDocs,
   updateDoc,
   doc,
   query,
   where,
+  onSnapshot,
 } from 'firebase/firestore';
 import { useRouter } from 'next/router';
-import { getRandomImage } from '../../commons/libraries/utils';
+import { getRandomImage, getRandomNumber } from '../../commons/libraries/utils';
+import { Modal } from 'antd';
+import { Content } from 'antd/es/layout/layout';
 
 export default function MainPage() {
   const router = useRouter();
+  const [articleNum, setArticleNum] = useState(Number);
   const [listsData, setListsData] = useState<any[]>([]);
   const [randomImage, setRandomImage] = useState('');
   const [selectedArticle, setSelectedArticle] = useState({
@@ -21,42 +24,63 @@ export default function MainPage() {
     isRead: false,
     title: '',
     link: '',
+    description: '',
+    image: '',
   });
 
   useEffect(() => {
-    const fetchLists = async () => {
-      const queryLists = query(
-        collection(db, 'list'),
-        where('isRead', '==', false)
-      );
-      const result = await getDocs(queryLists);
-      const datas = result.docs.map((el) => el.data());
-      // Blog - firebase에서 쿼리 가져오기 https://firebase.google.com/docs/firestore/query-data/queries?hl=ko
+    const queryLists = query(
+      collection(db, 'list'),
+      where('isRead', '==', false)
+    );
+
+    const fetchLists = onSnapshot(queryLists, (snapshot) => {
+      const datas = snapshot.docs.map((doc) => doc.data());
       setListsData(datas);
+      warningEmptyData(datas);
+    });
+
+    const warningEmptyData = (data: any[]) => {
+      if (data.length < 1) {
+        Modal.warning({
+          content: (
+            <p>
+              더이상 추천할 수 있는 링크가 없습니다. <br />
+              리스트 페이지에서 새로운 아티클을 등록해주세요.
+            </p>
+          ),
+          onOk(...args) {
+            router.push('/list');
+          },
+        });
+      }
     };
-    fetchLists();
+    return () => {
+      fetchLists();
+      // warningEmptyData(listsData);
+      //Blog - 여기 놓으면 두번 실행되는 것 리액트 라이프사이클 이해하고 블로그에 정리하기
+    };
   }, []);
 
   const clickCreateRandomArticle = () => {
     const dataNum = listsData.length;
-    const randomNum = Math.floor(Math.random() * dataNum);
-    // TODO - 이전과 같은 숫자가 나오면 랜덤숫자 다시 뽑기
-    setSelectedArticle(listsData[randomNum]);
+    setArticleNum((prev) => {
+      let randomNum;
+      if (dataNum > 1) {
+        do {
+          randomNum = getRandomNumber(0, dataNum);
+        } while (prev === randomNum);
+      } else {
+        randomNum = 0;
+      }
+      return randomNum;
+    });
+    console.log(articleNum);
+    setSelectedArticle(listsData[articleNum]);
 
     const image = getRandomImage();
     setRandomImage(image);
   };
-
-  useEffect(() => {
-    console.log('selectedAriticle:');
-    console.log(selectedArticle);
-    console.log('listData:');
-    console.log(listsData);
-  }, [selectedArticle]);
-  // Blog - 랜더링 후 버튼을 처음 클릭할 때는 selectedArticle값이 빈값으로 나옴 두번째부터 제대로 실행.
-  // 이유 : setListsData가 비동기로 작동해서 바로 listsData에 반영안됨. 렌더링이 다시 되어야 그때부터 반영
-  // 따라서 selctedArticle이 변경되었을때 useEffect를 통해 리렌더링하면 처음부터 결과가 나온다.
-  // 아여기 이해가 잘 안된다.. 일단 다른 부분 해결하고 다시 돌아오자
 
   const onChangeIsRead = async () => {
     const changedIsRead = !selectedArticle.isRead;

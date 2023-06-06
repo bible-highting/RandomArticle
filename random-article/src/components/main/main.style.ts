@@ -9,7 +9,7 @@ export const BoxWrapper = styled.div`
   position: relative;
   max-width: 672px;
   margin: 150px auto;
-  padding: 40px 200px;
+  padding: 40px;
   text-align: center;
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
@@ -38,6 +38,21 @@ export const Article = styled(Card)`
   margin: 0 auto;
 `;
 
+export const ArticleTitle = styled.div`
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+`;
+
+export const ArticleDesc = styled.div`
+  min-height: 66px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+`;
 export const IsRead = styled(Checkbox)`
   margin: 20px 0;
 `;

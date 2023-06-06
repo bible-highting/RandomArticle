@@ -23,19 +23,27 @@ export default function MainPageUI(props: IPropsMainPageUI) {
                 {/* TODO - 추후 a없애고 onClickMotoToArticle로 구현? js로 페이지 이동하는 법 알기 router면 되려나*/}
                 <s.Article
                   hoverable
-                  style={{ width: 240 }}
+                  style={{ width: 350 }}
                   cover={
                     <img
                       alt='example'
-                      src={props.randomImage}
+                      src={props.selectedArticle.image}
                       height={150}
                       style={{ objectFit: 'cover' }}
                     />
                   }
                 >
                   <Meta
-                    title={props.selectedArticle.title}
-                    description={props.selectedArticle.link}
+                    title={
+                      <s.ArticleTitle>
+                        {props.selectedArticle.title}
+                      </s.ArticleTitle>
+                    }
+                    description={
+                      <s.ArticleDesc>
+                        {props.selectedArticle.description}
+                      </s.ArticleDesc>
+                    }
                     style={{ textAlign: 'left' }}
                   />
                 </s.Article>
