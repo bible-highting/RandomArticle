@@ -20,7 +20,6 @@ export default function MainPageUI(props: IPropsMainPageUI) {
           {props.selectedArticle.id && (
             <>
               <a href={props.selectedArticle.link} target='_blank'>
-                {/* TODO - 추후 a없애고 onClickMotoToArticle로 구현? js로 페이지 이동하는 법 알기 router면 되려나*/}
                 <s.Article
                   hoverable
                   style={{ width: 350 }}
